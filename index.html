@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Student Performance Predictor</title>
+  <style>
+    body{font-family:Arial,sans-serif;background:#f3f6fb;margin:0;padding:24px;color:#172033}
+    .card{max-width:620px;margin:20px auto;background:white;padding:28px;border-radius:16px;box-shadow:0 5px 24px #0001}
+    h1{color:#174ea6} label{display:block;margin-top:13px;font-weight:600}
+    input,select{width:100%;padding:10px;margin-top:6px;border:1px solid #ccd3df;border-radius:8px;box-sizing:border-box}
+    button{margin-top:22px;padding:12px 18px;background:#174ea6;color:white;border:0;border-radius:8px;font-size:16px}
+    .result{margin-top:20px;padding:14px;background:#eaf3ff;border-radius:8px;font-weight:bold}
+    .error{color:#b00020}.note{color:#596579;font-size:13px}
+  </style>
+</head>
+<body><div class="card">
+  <h1>Student Performance Prediction</h1>
+  <p>Enter the details below to estimate a performance category.</p>
+  <form method="post">
+    <label>Attendance (%)</label><input type="number" name="attendance" min="0" max="100" value="80" required>
+    <label>Study hours per day</label><input type="number" name="study_hours" min="0" max="24" step="0.1" value="3" required>
+    <label>Previous exam score</label><input type="number" name="previous_score" min="0" max="100" value="65" required>
+    <label>Assignments completed (out of 10)</label><input type="number" name="assignments_completed" min="0" max="10" value="7" required>
+    <label>Sleep hours per day</label><input type="number" name="sleep_hours" min="0" max="24" step="0.1" value="7" required>
+    <label>Internet access</label><select name="internet_access"><option>Yes</option><option>No</option></select>
+    <label>Extracurricular participation</label><select name="extracurricular"><option>Yes</option><option>No</option></select>
+    <button type="submit">Predict Performance</button>
+  </form>
+  {% if prediction %}<div class="result">Predicted Performance: {{ prediction }}</div>{% endif %}
+  {% if error %}<p class="error">{{ error }}</p>{% endif %}
+  <p class="note">Educational demonstration only. Predictions should not be used to label or limit students.</p>
+</div></body></html>
